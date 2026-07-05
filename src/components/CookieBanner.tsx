@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IoClose } from 'react-icons/io5'; // Σιγουρέψου ότι έχεις κάνει npm install react-icons
+import { IoClose } from 'react-icons/io5';
 
-// Το Modal Component που μου έστειλες
+// --- Modal Component ---
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -17,7 +17,9 @@ const Modal = ({ isOpen, onClose, title, content }: ModalProps) => (
     {isOpen && (
       <>
         <motion.div 
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          exit={{ opacity: 0 }}
           onClick={onClose}
           className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[10001]"
         />
@@ -42,26 +44,33 @@ const Modal = ({ isOpen, onClose, title, content }: ModalProps) => (
   </AnimatePresence>
 );
 
-// Το Κύριο Cookie Banner
+// --- Main Cookie Banner ---
 const CookieBanner = () => {
+  const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
+  // 1. Σωστό useEffect με σταθερό dependency array []
   useEffect(() => {
     setMounted(true);
-    const consent = localStorage.getItem('cookie-consent');
+    
+    // Έλεγχος αν υπάρχει ήδη συγκατάθεση
+    const consent = typeof window !== 'undefined' ? localStorage.getItem('cookie-consent') : null;
+    
     if (!consent) {
-      const timer = setTimeout(() => setIsVisible(true), 1500);
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 1500);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, []); // ΠΑΝΤΑ ΑΔΕΙΟ ΕΔΩ ΓΙΑ ΝΑ ΜΗΝ ΒΓΑΖΕΙ ERROR
 
   const handleAction = (status: 'accepted' | 'declined') => {
     localStorage.setItem('cookie-consent', status);
     setIsVisible(false);
   };
 
+  // Αποφυγή Hydration Error
   if (!mounted) return null;
 
   return (
@@ -110,11 +119,11 @@ const CookieBanner = () => {
         content={
           <div className="space-y-4">
             <h3 className="text-white font-bold">1. Data Collection</h3>
-            <p>We collect only the necessary information to provide our luxury transfer services, such as your name and contact details for bookings.</p>
+            <p>We collect only the necessary information to provide our luxury transfer services.</p>
             <h3 className="text-white font-bold">2. Cookies</h3>
-            <p>We use essential cookies to maintain your session and security. No tracking cookies are used without your explicit consent.</p>
+            <p>We use essential cookies to maintain your session. No tracking without consent.</p>
             <h3 className="text-white font-bold">3. Contact</h3>
-            <p>For any questions regarding your data, contact us at info@athensluxurytransfer.gr</p>
+            <p>Email: info@athensluxurytransfer.gr</p>
           </div>
         }
       />

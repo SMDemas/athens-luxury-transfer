@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Header from '@/components/Header';
 import ContactForm from '@/components/ContactForm';
 import Modal from '@/components/Modal';
@@ -133,9 +132,11 @@ export default function ContactPage() {
             
             {/* Column 1: Logo & Info */}
             <div className="space-y-6 flex flex-col items-center md:items-start">
-              <div className="relative w-48 h-20">
-                <Image src="/logo.webp" alt="Logo" fill className="object-contain" priority />
-              </div>
+              <img 
+                src="/logo.webp" 
+                alt="Logo" 
+                className="w-48 h-20 object-contain" 
+              />
               <p className="font-noto text-white/40 text-[11px] leading-relaxed tracking-wider max-w-xs mx-auto md:mx-0">
                 Premium chauffeur services and bespoke travel experiences in Athens and throughout Greece. Available 24/7 for your convenience.
               </p>
@@ -167,23 +168,39 @@ export default function ContactPage() {
                 <li className="uppercase tracking-[0.2em] text-white/20 italic">Athens, Greece</li>
               </ul>
               
-              {/* Social Icons (Inline SVGs to avoid import errors) */}
-              <div className="flex gap-4 pt-4">
+              {/* Social Icons Container & Partner Badge */}
+              <div className="flex flex-col items-center md:items-start gap-6 pt-2">
+                <div className="flex gap-4">
+                  <a 
+                    href="https://www.instagram.com/athensluxurytransfer/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#7a6f40] hover:border-[#7a6f40] transition-all duration-500 hover:-translate-y-1"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  </a>
+                  <a 
+                    href="https://www.facebook.com/sdathensluxurytransfer" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#7a6f40] hover:border-[#7a6f40] transition-all duration-500 hover:-translate-y-1"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                  </a>
+                </div>
+
+                {/* Η εικόνα adv01.webp ως Link με απλό HTML tag */}
                 <a 
-                  href="https://www.instagram.com/athensluxurytransfer/" 
-                  target="_blank" 
+                  href="https://athenianseatizens.com/"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#7a6f40] hover:border-[#7a6f40] transition-all duration-500 hover:-translate-y-1"
+                  className="block w-56 opacity-60 hover:opacity-100 transition-all duration-300 transform hover:scale-[1.02]"
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                </a>
-                <a 
-                  href="https://www.facebook.com/sdathensluxurytransfer" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#7a6f40] hover:border-[#7a6f40] transition-all duration-500 hover:-translate-y-1"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                  <img 
+                    src="/adv01.webp" 
+                    alt="Athenian Seatizens Partner"
+                    className="w-full h-auto object-contain object-center md:object-left"
+                  />
                 </a>
               </div>
             </div>

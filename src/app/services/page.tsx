@@ -261,13 +261,21 @@ export default function VIPServicesPage() {
       {/* FOOTER */}
       <footer className="relative py-20 bg-black border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 text-center md:text-left">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 items-start">
+            
+            {/* Logo & Description */}
             <div className="flex flex-col items-center md:items-start space-y-6">
-              <Image src="/logo.webp" alt="Athens Luxury Transfer" width={192} height={80} className="object-contain" />
+              <img 
+                src="/logo.webp" 
+                alt="Athens Luxury Transfer" 
+                className="w-48 h-20 object-contain" 
+              />
               <p className="font-noto text-white/40 text-[11px] max-w-xs uppercase tracking-widest">Premium Chauffeur Services. Available 24/7.</p>
             </div>
+
+            {/* Information Links */}
             <div className="space-y-6">
-              <h4 className="font-bona text-[#7a6f40] text-[12px] tracking-[0.3em] uppercase">Information</h4>
+              <h4 className="font-bona text-[#7a6f40] text-[12px] tracking-[0.3em] uppercase font-bold">Information</h4>
               <ul className="space-y-3">
                 {Object.entries(policies).map(([key, policy]) => (
                   <li key={key}>
@@ -276,15 +284,38 @@ export default function VIPServicesPage() {
                 ))}
               </ul>
             </div>
+
+            {/* Connect, Socials & Partner Link */}
             <div className="space-y-6 flex flex-col items-center md:items-start">
-              <h4 className="font-bona text-[#7a6f40] text-[12px] tracking-[0.3em] uppercase">Connect</h4>
+              <h4 className="font-bona text-[#7a6f40] text-[12px] tracking-[0.3em] uppercase font-bold">Connect</h4>
               <p className="font-noto text-white/50 text-[10px] tracking-widest uppercase">+30 698 895 9293</p>
-              <div className="flex gap-4">
-                <a href="https://www.instagram.com/athensluxurytransfer/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[#7a6f40] transition-colors"><FaWhatsapp size={20}/></a>
-                <a href="https://www.facebook.com/sdathensluxurytransfer" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[#7a6f40] transition-colors"><FaPhoneAlt size={18}/></a>
+              
+              {/* Social Icons Container */}
+              <div className="flex flex-col items-center md:items-start gap-6 pt-2">
+                <div className="flex gap-4">
+                  <a href="https://www.instagram.com/athensluxurytransfer/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[#7a6f40] transition-colors"><FaWhatsapp size={20}/></a>
+                  <a href="https://www.facebook.com/sdathensluxurytransfer" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[#7a6f40] transition-colors"><FaPhoneAlt size={18}/></a>
+                </div>
+
+                {/* Η εικόνα adv01.webp ως Link με απλό HTML tag */}
+                <a 
+                  href="https://athenianseatizens.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-56 opacity-60 hover:opacity-100 transition-all duration-300 transform hover:scale-[1.02]"
+                >
+                  <img 
+                    src="/adv01.webp" 
+                    alt="Athenian Seatizens Partner"
+                    className="w-full h-auto object-contain object-center md:object-left"
+                  />
+                </a>
               </div>
             </div>
+
           </div>
+
+          {/* Bottom Copyright Strip */}
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
              <p className="font-bona text-[#7a6f40] text-[10px] uppercase tracking-[0.4em]">© 2026 Athens Luxury Transfer</p>
           </div>
